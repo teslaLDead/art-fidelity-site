@@ -1,0 +1,11 @@
+.hv-100 {
+  min-height: 100vh;
+}
+@font-face {
+  font-family: "axiformaHeavy";
+  font-display: swap;
+  src: local("Axiforma"), url("./assets/Heavy.otf") format("opentype");
+}
+* {
+  font-family: "axiformaHeavy" !important;
+}
