@@ -1,11 +1,20 @@
 .hv-100 {
   min-height: 100vh;
 }
-@font-face {
-  font-family: "axiformaHeavy";
-  font-display: swap;
-  src: local("Axiforma"), url("./assets/Heavy.otf") format("opentype");
-}
+
 * {
-  font-family: "axiformaHeavy" !important;
+  font-family: "axiforma" !important;
+  margin: 0;
+}
+.app-header {
+  background-image: url("./assets/header.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  margin-top: 0;
+}
+
+.headerServices::after {
+  content: " ";
 }

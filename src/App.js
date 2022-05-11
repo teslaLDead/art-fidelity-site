@@ -2,11 +2,19 @@ import "./styles.css";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material";
-import axiformaFontHeavy from "./assets/Regular.otf";
+import axiformaFontHeavy from "./assets/fonts/Heavy.otf";
+import axiformaFontRegular from "./assets/fonts/Regular.otf";
+import Section from "./components/Sections";
+import { dummyJson } from "./components/Sections";
+import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "axiformaHeavy"
+    fontFamily: "axiformaHeavy",
+    h1: {
+      fontWeight: "bolder"
+    }
   },
   components: {
     MuiCssBaseline: {
@@ -14,12 +22,21 @@ const theme = createTheme({
       @font-face {
         font-family: 'axiformaHeavy';
         font-display: swap;
-        src: local('Axiforma'), url(${axiformaFontHeavy}) format("opentype");
+        src: url(${axiformaFontHeavy}) format("opentype");
+      }
+      @font-face {
+        font-family: 'axiformaRegular';
+        font-display: swap;
+        src: url(${axiformaFontRegular}) format("opentype");
       }
       `
     }
   }
 });
+
+// theme.typography.h1 = {
+//   fontWeight: "bolder"
+// };
 
 export default function App() {
   return (
@@ -27,6 +44,11 @@ export default function App() {
       <div className="App">
         <Navbar />
         <Header />
+        {dummyJson.map((el) => (
+          <Section {...el} />
+        ))}
+        <Testimonials />
+        <Footer />
       </div>
     </ThemeProvider>
   );
