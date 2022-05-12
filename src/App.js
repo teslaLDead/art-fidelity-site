@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -8,30 +9,29 @@ import Section from "./components/Sections";
 import { dummyJson } from "./components/Sections";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
+import { ParallaxProvider } from "react-scroll-parallax";
+import Contact from "./components/Contact";
 
 const theme = createTheme({
   typography: {
-    fontFamily: "axiformaHeavy",
+    fontFamily: "AxiformaRegular",
     h1: {
-      fontWeight: "bolder"
-    }
+      fontSize: "4rem",
+      fontFamily: "AxiformaHeavy",
+    },
+    p: {
+      fontFamily: "AxiformaRegular",
+    },
+    subtitle2: {
+      fontFamily: "AxiformaMedium",
+      fontWeight: "bolder",
+      fontSize: "1rem",
+    },
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-      @font-face {
-        font-family: 'axiformaHeavy';
-        font-display: swap;
-        src: url(${axiformaFontHeavy}) format("opentype");
-      }
-      @font-face {
-        font-family: 'axiformaRegular';
-        font-display: swap;
-        src: url(${axiformaFontRegular}) format("opentype");
-      }
-      `
-    }
-  }
+    MuiCssBaseline: {},
+    MuiLink: {},
+  },
 });
 
 // theme.typography.h1 = {
@@ -39,17 +39,34 @@ const theme = createTheme({
 // };
 
 export default function App() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [passedScrollLimit, setPassedScrollLimit] = useState(false);
+  const handleScroll = () => {
+    if (window.pageYOffset > 150) setPassedScrollLimit(true);
+    else setPassedScrollLimit(false);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Navbar />
-        <Header />
-        {dummyJson.map((el) => (
-          <Section {...el} />
-        ))}
-        <Testimonials />
-        <Footer />
-      </div>
+      <ParallaxProvider>
+        <div className="App">
+          <Navbar passedScrollLimit={passedScrollLimit} />
+          <Header />
+          {dummyJson.map((el) => (
+            <Section {...el} />
+          ))}
+          <Testimonials />
+          <Contact />
+          <Footer />
+        </div>
+      </ParallaxProvider>
     </ThemeProvider>
   );
 }
