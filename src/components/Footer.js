@@ -25,42 +25,69 @@ const Footer = () => {
           <Typography variant="h6">Thank you for subsrcibing!</Typography>
         </Box>
       </Dialog>
-      <Grid py={5} sx={{ background: "#f1f5fb" }}>
-        <Box pt={5} textAlign="center">
-          <Typography variant="h5">
-            Get the latest news on our events!
-          </Typography>
-        </Box>
-        <Box
-          my={5}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TextField label="First Name" variant="outlined" />
-          <TextField
-            sx={{ marginLeft: "10px" }}
-            label="Email Address"
-            variant="outlined"
-          />
-          <Button
-            sx={{ marginLeft: "10px" }}
-            onClick={handleOpen}
-            variant="contained"
+      <Grid
+        container
+        py={5}
+        sx={{
+          background: "#f1f5fb",
+          ["@media (max-width:680px)"]: {
+            textAlign: "left",
+          },
+        }}
+      >
+        <Grid item xs={12}>
+          <Box pt={5} textAlign="center">
+            <Typography variant="h5">
+              Get the latest news on our events!
+            </Typography>
+          </Box>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            my={5}
+            sx={{
+              ["@media (max-width:680px)"]: {
+                flexDirection: "row",
+                textAlign: "center",
+              },
+            }}
           >
-            Subscribe
-          </Button>
-        </Box>
-        <Box textAlign="center">
-          <Typography variant="body1">
-            We respect your privacy and promise not to spam!
-          </Typography>
-        </Box>
-        <Box my={5} mx={5} sx={{ margin: "5rem 150px 0 150px" }}>
-          <Grid container py={5}>
-            <Grid item xs={4}>
+            <Grid item lg={2} xs={12} my={1}>
+              <TextField label="First Name" variant="outlined" />
+            </Grid>
+            <Grid item lg={2} xs={12} my={1}>
+              <TextField
+                label="Email Address"
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item lg={1} xs={12} my={1}>
+              <Button
+                sx={{ marginLeft: "10px" }}
+                onClick={handleOpen}
+                variant="contained"
+              >
+                Subscribe
+              </Button>
+            </Grid>
+          </Grid>
+          <Box textAlign="center">
+            <Typography variant="body1">
+              We respect your privacy and promise not to spam!
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          my={5}
+          mx={5}
+          sx={{ margin: "5rem 150px 0 150px" }}
+          container
+          xs={12}
+        >
+          <Grid container>
+            <Grid item xs={12} lg={4}>
               <Box className="footer-heading">
                 <Typography variant="h6">About ArtFidelity</Typography>
               </Box>
@@ -70,7 +97,7 @@ const Footer = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} lg={4}>
               <Box className="footer-heading">
                 <Typography variant="h6">Key Sections</Typography>
               </Box>
@@ -89,7 +116,7 @@ const Footer = () => {
                 ))}
               </Box>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} lg={4}>
               <Box className="footer-heading">
                 <Typography variant="h6">Contact</Typography>
               </Box>
@@ -114,7 +141,11 @@ const Footer = () => {
                 </Box>
                 <Grid container>
                   <Box mr={2}>
-                    <Link color="inherit" target="_blank" href="https://instagram.com/artfidelity">
+                    <Link
+                      color="inherit"
+                      target="_blank"
+                      href="https://instagram.com/artfidelity"
+                    >
                       <InstagramIcon />
                     </Link>
                   </Box>
@@ -136,19 +167,21 @@ const Footer = () => {
               </Grid>
             </Grid>
           </Grid>
-        </Box>
-        <Box
-          pt={3}
-          textAlign="center"
-          sx={{
-            borderTop: "1px solid #d8ddd8",
-            color: "#bababa",
-          }}
-        >
-          <Typography variant="caption">
-            Copyright &#169; 2022 ArtFidelity. All rights reserved.
-          </Typography>
-        </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box
+            pt={3}
+            textAlign="center"
+            sx={{
+              borderTop: "1px solid #d8ddd8",
+              color: "#bababa",
+            }}
+          >
+            <Typography variant="caption">
+              Copyright &#169; 2022 ArtFidelity. All rights reserved.
+            </Typography>
+          </Box>
+        </Grid>
       </Grid>
     </>
   );

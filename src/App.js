@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import axiformaFontHeavy from "./assets/fonts/Heavy.otf";
 import axiformaFontRegular from "./assets/fonts/Regular.otf";
 import Section from "./components/Sections";
-import { dummyJson } from "./components/Sections";
+import Services, { dummyJson } from "./components/Sections";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import { ParallaxProvider } from "react-scroll-parallax";
@@ -59,11 +59,15 @@ export default function App() {
         <div className="App">
           <Navbar passedScrollLimit={passedScrollLimit} />
           <Header />
-          {dummyJson.map((el) => (
-            <Section {...el} />
-          ))}
-          <Testimonials />
-          <Contact />
+          <div id="Services">
+            <Services />
+          </div>
+          <div id="Testimonials">
+            <Testimonials />
+          </div>
+          <div id="Contact">
+            <Contact />
+          </div>
           <Footer />
         </div>
       </ParallaxProvider>

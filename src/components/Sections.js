@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, Link } from "@mui/material";
 import dummyIcon from "../assets/dummy-icon.png";
 import { Parallax } from "react-scroll-parallax";
 import Fade from "react-reveal/Fade";
@@ -9,57 +9,24 @@ const dummyJson = [
     heading: "film",
     background: "#4e0250",
     color: "white",
-    points: [
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-    ],
+    text: "One-stop solution for all photo & video requirements.",
+    buttonLink: "https://www.behance.net/artfidelityfilms",
+    buttonText: "See Portfolio",
   },
   {
     heading: "music",
     background: "#58bc82",
-    points: [
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-    ],
+    text: "Live performances at your club, party or wedding?",
+    buttonLink: "#",
+    buttonText: "Click Here",
   },
   {
     heading: "design",
     background: "#156580",
     color: "white",
-    points: [
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-      {
-        img: dummyIcon,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      },
-    ],
+    text: "From a pitch deck to a monthly social media calendar, everything.",
+    buttonLink: "#",
+    buttonText: "Click Here",
   },
 ];
 
@@ -83,15 +50,25 @@ const SectionPointer = ({ img, text }) => {
   );
 };
 
-const Section = ({ heading, points, background, color }) => {
+const Section = ({
+  heading,
+  text,
+  buttonLink,
+  background,
+  color,
+  buttonText,
+}) => {
   return (
-    <Box
+    <Grid item
+      xs={12}
+      lg={4}
       className="services-section"
-      style={{ background: background, color: color }}
+      sx={{ background: background, color: color }}
       py={5}
+      textAlign="center"
     >
       <Grid container>
-        <Grid item xs={5}>
+        <Grid item xs={12}>
           <Parallax speed={12}>
             <Fade delay={200}>
               <div>
@@ -107,16 +84,39 @@ const Section = ({ heading, points, background, color }) => {
             </Fade>
           </Parallax>
         </Grid>
-        <Grid item xs={7}>
-          {points.map((el) => (
-            <SectionPointer {...el} />
-          ))}
-        </Grid>
+        <Box sx={{ marginTop: "150px" }} mx={5}>
+          <Grid>{text}</Grid>
+          <Box mt={3}>
+            <Link underline="none" href={buttonLink} target="_blank">
+              <Button
+                sx={{
+                  color: "black",
+                  background:'white'
+                }}
+                variant="contained"
+              >
+                {buttonText}
+              </Button>
+            </Link>
+          </Box>
+        </Box>
       </Grid>
-    </Box>
+    </Grid>
   );
 };
 
-export default Section;
+const Services = () => {
+  return (
+    <>
+      <Grid container>
+        {dummyJson.map((el) => (
+          <Section {...el} />
+        ))}
+      </Grid>
+    </>
+  );
+};
+
+export default Services;
 
 export { dummyJson };

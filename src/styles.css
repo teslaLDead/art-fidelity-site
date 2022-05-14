@@ -69,15 +69,15 @@
   font-size: 6rem;
   font-family: "AxiformaHeavy";
   text-transform: uppercase;
-  margin-left: -10px;
+  /* margin-left: -10px; */
   opacity: 0.15;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   margin-top: -100px;
 }
 .section-heading {
   font-size: 1.45rem;
-  margin-left: 100px;
+  /* margin-left: 100px; */
   font-weight: bolder;
   font-family: "AxiformaHeavy";
   text-transform: uppercase;
@@ -88,6 +88,7 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  width: 33.33%;
 }
 
 .testimonial-image-secondary {
@@ -112,4 +113,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@media only screen and (max-width: 680px)  {
+  .nav-links{
+    display: none;
+  }
+  .dot::after, .dot::before{
+    display: none;
+  }
+  .section-back-heading {
+    font-size: 4rem;
+  }
 }
