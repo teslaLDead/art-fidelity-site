@@ -9,8 +9,14 @@ import {
 } from "@mui/material";
 import logo from "../assets/logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
-const links = ["Services", "Testimonials", "Portfolio", "Contact"];
+const links = [
+  { linkName: "Services", link: "" },
+  { linkName: "Testimonials", link: "" },
+  { linkName: "Portfolio", link: "Services" },
+  { linkName: "Contact", link: "Footer" },
+];
 
 const NavLink = ({ link, text }) => (
   <Box
@@ -28,17 +34,67 @@ const NavLink = ({ link, text }) => (
     </Link>
   </Box>
 );
-const Navbar = ({ passedScrollLimit }) => {
+const Navbar = ({ passedScrollLimit, setStopScroll }) => {
   const [mobileNavMenuOpen, setMobileNavMenuOpen] = useState(false);
+  const handleMobileNavOpen = () => {
+    setMobileNavMenuOpen(true);
+    setStopScroll(true);
+  };
+  const handleMobileNavClose = () => {
+    setMobileNavMenuOpen(false);
+    setStopScroll(false);
+  };
   return (
     <>
       {mobileNavMenuOpen && (
         <>
-          <Grid sx={{
-            width: '100vw',
-            height: '100vh'
-          }}>
-
+          <Grid
+            container
+            textAlign="center"
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              padding: "50px 0",
+              zIndex: 1000,
+              width: "100vw",
+              height: "100%",
+              background: "white",
+              position: "fixed",
+              overflow: "hidden",
+              top: 0,
+              left: 0,
+            }}
+          >
+            <Box
+              sx={{
+                position: "fixed",
+                right: "25px",
+                top: 20,
+              }}
+            >
+              <IconButton onClick={handleMobileNavClose}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+            {links.map((el) => (
+              <Grid
+                my={2}
+                item
+                xs={12}
+                sx={{
+                  height: "50px",
+                }}
+              >
+                <Link
+                  onClick={handleMobileNavClose}
+                  color="inherit"
+                  href={`#${el.link === "" ? el.linkName : el.link}`}
+                  underline="none"
+                >
+                  {el.linkName}
+                </Link>
+              </Grid>
+            ))}
           </Grid>
         </>
       )}
@@ -70,7 +126,11 @@ const Navbar = ({ passedScrollLimit }) => {
           xs={8}
         >
           {links.slice(0, 2).map((el) => (
-            <NavLink key={el} text={el} link={`#${el}`} />
+            <NavLink
+              key={el.linkName}
+              text={el.linkName}
+              link={`#${el.link === "" ? el.linkName : el.link}`}
+            />
           ))}
           <Link href="#Home">
             <img
@@ -80,7 +140,11 @@ const Navbar = ({ passedScrollLimit }) => {
             />
           </Link>
           {links.slice(2).map((el) => (
-            <NavLink key={el} text={el} link={`#${el}`} />
+            <NavLink
+              key={el.linkName}
+              text={el.linkName}
+              link={`#${el.link === "" ? el.linkName : el.link}`}
+            />
           ))}
           <Box
             sx={{
@@ -97,6 +161,7 @@ const Navbar = ({ passedScrollLimit }) => {
                 color: passedScrollLimit ? "black" : "white",
               }}
               component="span"
+              onClick={handleMobileNavOpen}
             >
               <MenuIcon />
             </IconButton>

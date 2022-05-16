@@ -24,6 +24,10 @@ const Contact = () => {
             sx={{
               width: "400px",
               marginLeft: "50px",
+              ["@media (max-width:680px)"]: {
+                ml: 0,
+                mx: 1
+              },
             }}
             label="Type your message here"
             variant="outlined"

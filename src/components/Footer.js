@@ -30,8 +30,9 @@ const Footer = () => {
         py={5}
         sx={{
           background: "#f1f5fb",
+          margin: 0,
           ["@media (max-width:680px)"]: {
-            textAlign: "left",
+            textAlign: "center",
           },
         }}
       >
@@ -57,10 +58,7 @@ const Footer = () => {
               <TextField label="First Name" variant="outlined" />
             </Grid>
             <Grid item lg={2} xs={12} my={1}>
-              <TextField
-                label="Email Address"
-                variant="outlined"
-              />
+              <TextField label="Email Address" variant="outlined" />
             </Grid>
             <Grid item lg={1} xs={12} my={1}>
               <Button
@@ -82,89 +80,142 @@ const Footer = () => {
           item
           my={5}
           mx={5}
-          sx={{ margin: "5rem 150px 0 150px" }}
+          sx={{
+            margin: "5rem 150px 0 150px",
+            ["@media (max-width:680px)"]: {
+              margin: 0,
+              marginTop: 10,
+            },
+          }}
           container
           xs={12}
         >
-          <Grid container>
-            <Grid item xs={12} lg={4}>
-              <Box className="footer-heading">
-                <Typography variant="h6">About ArtFidelity</Typography>
-              </Box>
+          <Grid container mx={3} spacing={2}>
+            <Grid
+              container
+              justifyContent="flex-start"
+              flexDirection="column"
+              alignItems="center"
+              item
+              xs={12}
+              lg={4}
+            >
               <Box>
-                <Typography variant="body2">
-                  loren ipsum stiff asdasd
-                </Typography>
+                <Box className="footer-heading">
+                  <Typography variant="h6">About ArtFidelity</Typography>
+                </Box>
+                <Box>
+                  <Typography variant="body2">
+                    Get in touch for anything indie! We do films, music and
+                    design. From social media graphics & design to album release
+                    planning & production.
+                  </Typography>
+                </Box>
               </Box>
             </Grid>
-            <Grid item xs={12} lg={4}>
-              <Box className="footer-heading">
-                <Typography variant="h6">Key Sections</Typography>
-              </Box>
+            <Grid
+              container
+              justifyContent="flex-start"
+              flexDirection="column"
+              alignItems="center"
+              item
+              xs={12}
+              lg={4}
+            >
               <Box>
-                {links.map((el) => (
-                  <Box
-                    my={2}
+                <Box className="footer-heading">
+                  <Typography variant="h6">Key Sections</Typography>
+                </Box>
+                <Box>
+                  {links.map((el) => (
+                    <Box
+                      my={2}
+                      sx={{
+                        color: "#00000087",
+                      }}
+                    >
+                      <Link
+                        href={`#${el.link !== "" ? el.link : el.linkName}`}
+                        color="inherit"
+                        underline="none"
+                      >
+                        <Typography>{el.linkName}</Typography>
+                      </Link>
+                    </Box>
+                  ))}
+                </Box>
+              </Box>
+            </Grid>
+            <Grid
+              container
+              justifyContent="flex-start"
+              flexDirection="column"
+              alignItems="center"
+              item
+              xs={12}
+              lg={4}
+            >
+              <Box>
+                <Box className="footer-heading">
+                  <Typography variant="h6">Contact</Typography>
+                </Box>
+                <Grid alignItems="center">
+                  <Box mb={2}>
+                    <Typography variant="body2">Phone: </Typography>
+                    <Link
+                      href="tel:+917011398153"
+                      color="inherit"
+                      underline="none"
+                    >
+                      +91-7011398153
+                    </Link>
+                    <Typography variant="body2">Email: </Typography>
+                    <Link
+                      href="mailto:hello@artfidelity.in"
+                      color="inherit"
+                      underline="none"
+                    >
+                      hello@artfidelity.in
+                    </Link>
+                  </Box>
+                  <Grid
+                    container
                     sx={{
-                      color: "#00000087",
+                      ["@media (max-width:680px)"]: {
+                        justifyContent: "center",
+                      },
                     }}
                   >
-                    <Link href="#" color="inherit" underline="none">
-                      <Typography>{el}</Typography>
-                    </Link>
-                  </Box>
-                ))}
-              </Box>
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <Box className="footer-heading">
-                <Typography variant="h6">Contact</Typography>
-              </Box>
-              <Grid container alignItems="center">
-                <Box mb={2}>
-                  <Typography variant="body2">Phone: </Typography>
-                  <Link
-                    href="tel:+917011398153"
-                    color="inherit"
-                    underline="none"
-                  >
-                    +91-7011398153
-                  </Link>
-                  <Typography variant="body2">Email: </Typography>
-                  <Link
-                    href="mailto:hello@artfidelity.in"
-                    color="inherit"
-                    underline="none"
-                  >
-                    hello@artfidelity.in
-                  </Link>
-                </Box>
-                <Grid container>
-                  <Box mr={2}>
-                    <Link
-                      color="inherit"
-                      target="_blank"
-                      href="https://instagram.com/artfidelity"
-                    >
-                      <InstagramIcon />
-                    </Link>
-                  </Box>
-                  <Box mr={2}>
-                    <Link
-                      color="inherit"
-                      target="_blank"
-                      href="https://www.linkedin.com/company/artfidelity/"
-                    >
-                      <LinkedInIcon />
-                    </Link>{" "}
-                  </Box>
-                  <Box mr={2}>
-                    <Link color="inherit" target="_blank" href="instagram.com">
-                      <FacebookIcon />
-                    </Link>{" "}
-                  </Box>
+                    <Box mr={2}>
+                      <Link
+                        color="inherit"
+                        target="_blank"
+                        href="https://instagram.com/artfidelity"
+                      >
+                        <InstagramIcon />
+                      </Link>
+                    </Box>
+                    <Box mr={2}>
+                      <Link
+                        color="inherit"
+                        target="_blank"
+                        href="https://www.linkedin.com/company/artfidelity/"
+                      >
+                        <LinkedInIcon />
+                      </Link>{" "}
+                    </Box>
+                    <Box mr={2}>
+                      <Link
+                        color="inherit"
+                        target="_blank"
+                        href="https://www.facebook.com/artfidelity"
+                      >
+                        <FacebookIcon />
+                      </Link>{" "}
+                    </Box>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </Box>
             </Grid>
           </Grid>
         </Grid>

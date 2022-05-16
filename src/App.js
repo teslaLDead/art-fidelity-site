@@ -2,7 +2,7 @@ import "./styles.css";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Navbar from "./components/Navbar";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { Box, createTheme, ThemeProvider } from "@mui/material";
 import axiformaFontHeavy from "./assets/fonts/Heavy.otf";
 import axiformaFontRegular from "./assets/fonts/Regular.otf";
 import Section from "./components/Sections";
@@ -39,7 +39,7 @@ const theme = createTheme({
 // };
 
 export default function App() {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [stopScroll, setStopScroll] = useState(false);
   const [passedScrollLimit, setPassedScrollLimit] = useState(false);
   const handleScroll = () => {
     if (window.pageYOffset > 150) setPassedScrollLimit(true);
@@ -56,8 +56,19 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <ParallaxProvider>
-        <div className="App">
-          <Navbar passedScrollLimit={passedScrollLimit} />
+        <Box
+          className="App"
+          // sx={
+          //   stopScroll && {
+          //     overflow: "hidden",
+          //     height: "100px",
+          //   }
+          // }
+        >
+          <Navbar
+            passedScrollLimit={passedScrollLimit}
+            setStopScroll={setStopScroll}
+          />
           <Header />
           <div id="Services">
             <Services />
@@ -68,8 +79,10 @@ export default function App() {
           <div id="Contact">
             <Contact />
           </div>
+          <div id="Footer">
           <Footer />
-        </div>
+          </div>
+        </Box>
       </ParallaxProvider>
     </ThemeProvider>
   );

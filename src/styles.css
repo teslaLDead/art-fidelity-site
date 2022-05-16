@@ -124,4 +124,7 @@
   .section-back-heading {
     font-size: 4rem;
   }
+  .footer-heading::after {
+    left: 43%
+  }
 }

@@ -18,15 +18,15 @@ const dummyJson = [
     background: "#58bc82",
     text: "Live performances at your club, party or wedding?",
     buttonLink: "#",
-    buttonText: "Click Here",
+    buttonText: "See Catalogue",
   },
   {
     heading: "design",
     background: "#156580",
     color: "white",
     text: "From a pitch deck to a monthly social media calendar, everything.",
-    buttonLink: "#",
-    buttonText: "Click Here",
+    buttonLink: "https://www.behance.net/artfidelityfilms",
+    buttonText: "See Portolfio",
   },
 ];
 
@@ -59,7 +59,8 @@ const Section = ({
   buttonText,
 }) => {
   return (
-    <Grid item
+    <Grid
+      item
       xs={12}
       lg={4}
       className="services-section"
@@ -84,14 +85,14 @@ const Section = ({
             </Fade>
           </Parallax>
         </Grid>
-        <Box sx={{ marginTop: "150px" }} mx={5}>
+        <Box sx={{ marginTop: "150px", textAlign: "center" }} mx={5}>
           <Grid>{text}</Grid>
           <Box mt={3}>
             <Link underline="none" href={buttonLink} target="_blank">
               <Button
                 sx={{
                   color: "black",
-                  background:'white'
+                  background: "white",
                 }}
                 variant="contained"
               >

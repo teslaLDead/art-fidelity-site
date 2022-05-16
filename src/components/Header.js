@@ -21,7 +21,7 @@ const Header = () => {
         className="app-header hv-100"
       >
         <Grid item xs={2} />
-        <Grid item xs={4} lg={4}>
+        <Grid item xs={4} lg={4} xl={4}>
           <Parallax speed={-10}>
             <Box>
               <Fade duration={2000} delay={400}>
